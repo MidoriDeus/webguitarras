@@ -11,29 +11,28 @@ import FadeInSection from './components/FadeInSection';
 import ElectricGuitarsPage from './pages/ElectricGuitarsPage';
 import AcousticGuitarsPage from './pages/AcousticGuitarsPage';
 import ElectroAcousticGuitarsPage from './pages/ElectroAcousticGuitarsPage';
+import NosotrosPage from './pages/NosotrosPage';
+import guitarImages from './utils/imagePaths';
 
 // Home component
 const Home = () => {
   // Limited mock data for home page (only 6 guitars)
   const [guitars] = useState([
     // Electric Guitars
-    { id: 1, name: "Stratos Elite", price: 1299990, image: "https://images.unsplash.com/photo-1550985616-1081025a7217?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "electric", brandDescription: "Fender es una marca icónica conocida por sus guitarras de alta calidad y sonido distintivo." },
-    { id: 2, name: "Les Paul Custom", price: 2499990, image: "https://images.unsplash.com/photo-1550291652-6ea9114a47b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "electric", brandDescription: "Gibson es sinónimo de excelencia en guitarras eléctricas desde 1902, creando instrumentos legendarios." },
+    { id: 1, name: "Stratos Elite", price: 1299990, image: guitarImages["stratos-elite"], category: "electric", brandDescription: "Fender es una marca icónica conocida por sus guitarras de alta calidad y sonido distintivo." },
+    { id: 2, name: "Les Paul Custom", price: 2499990, image: guitarImages["les-paul-custom"], category: "electric", brandDescription: "Gibson es sinónimo de excelencia en guitarras eléctricas desde 1902, creando instrumentos legendarios." },
 
     // Acoustic Guitars
-    { id: 6, name: "Dreadnought Classic", price: 899990, image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "acoustic", brandDescription: "Martin es una marca histórica fundada en 1833, reconocida por guitarras acústicas de primera calidad." },
-    { id: 7, name: "Auditorium Cutaway", price: 1149990, image: "https://images.unsplash.com/photo-1595675024853-0f3ec9098ac7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "acoustic", brandDescription: "Taylor es famosa por sus guitarras acústicas modernas con excelente intonación y proyección." },
+    { id: 6, name: "Dreadnought Classic", price: 899990, image: guitarImages["dreadnought-classic"], category: "acoustic", brandDescription: "Martin es una marca histórica fundada en 1833, reconocida por guitarras acústicas de primera calidad." },
+    { id: 7, name: "Auditorium Cutaway", price: 1149990, image: guitarImages["auditorium-cutaway"], category: "acoustic", brandDescription: "Taylor es famosa por sus guitarras acústicas modernas con excelente intonación y proyección." },
 
     // Electro-Acoustic Guitars
-    { id: 10, name: "Grand Auditorium EQ", price: 1399990, image: "https://images.unsplash.com/photo-1595675024853-0f3ec9098ac7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "electro-acoustic", brandDescription: "Taylor ofrece guitarras electroacústicas con sistemas de pastilla de alta fidelidad." },
-    { id: 11, name: "Folk Cutaway Preamp", price: 1099990, image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "electro-acoustic", brandDescription: "Martin combina su legado artesanal con tecnología moderna para actuaciones en vivo." }
+    { id: 10, name: "Grand Auditorium EQ", price: 1399990, image: guitarImages["grand-auditorium-eq"], category: "electro-acoustic", brandDescription: "Taylor ofrece guitarras electroacústicas con sistemas de pastilla de alta fidelidad." },
+    { id: 11, name: "Folk Cutaway Preamp", price: 1099990, image: guitarImages["folk-cutaway-preamp"], category: "electro-acoustic", brandDescription: "Martin combina su legado artesanal con tecnología moderna para actuaciones en vivo." }
   ]);
 
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
-
-  const toggleTheme = () => setIsDarkTheme(!isDarkTheme);
 
   const addToCart = (guitar) => {
     setCartItems([...cartItems, guitar]);
@@ -47,12 +46,10 @@ const Home = () => {
   };
 
   return (
-    <div className={`app ${!isDarkTheme ? 'light-theme' : ''}`}>
+    <div className="app">
       <Header
         onCartClick={() => setIsCartOpen(!isCartOpen)}
         cartCount={cartItems.length}
-        isDarkTheme={isDarkTheme}
-        onThemeToggle={toggleTheme}
       />
       <CartDrawer
         isOpen={isCartOpen}
@@ -76,13 +73,13 @@ const Home = () => {
               Seleccionadas a mano por su tono y desempeño.
             </p>
 
-            <div className="grid-container">
+            <div className="grid-container" aria-label="Colección de guitarras destacadas">
               {guitars.map((guitar) => (
-                <div key={guitar.id} className="card">
+                <article key={guitar.id} className="card" role="article" aria-labelledby={`guitar-${guitar.id}-title`}>
                   <div className="card-image-container">
                     <img
                       src={guitar.image || "https://placehold.co/300x400/1a1a1a/d4af37?text=Guitar"}
-                      alt={guitar.name}
+                      alt={`Imagen de la guitarra ${guitar.name}`}
                       className="card-image"
                     />
                     <div className="category-badge" style={{
@@ -102,7 +99,7 @@ const Home = () => {
                        guitar.category === 'acoustic' ? 'Acústica' : 'Electroacústica'}
                     </div>
                   </div>
-                  <h3 className="card-title">{guitar.name}</h3>
+                  <h3 id={`guitar-${guitar.id}-title`} className="card-title">{guitar.name}</h3>
                   <span className="card-price">${guitar.price.toLocaleString('es-CL')} CLP</span>
 
                   <div className="brand-description" style={{
@@ -119,13 +116,67 @@ const Home = () => {
                   <button className="btn-primary" onClick={() => addToCart(guitar)} style={{ width: '100%', fontSize: '0.9rem', padding: '0.5rem' }}>
                     Añadir al Carrito
                   </button>
-                </div>
+                </article>
               ))}
             </div>
           </section>
         </FadeInSection>
         <FadeInSection>
           <About />
+        </FadeInSection>
+
+        {/* Contact Section */}
+        <FadeInSection>
+          <section className="container" style={{ padding: '4rem 1rem', textAlign: 'center', marginTop: '2rem' }}>
+            <div style={{
+              backgroundColor: 'var(--bg-card)',
+              padding: '2rem',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid rgba(255, 255, 255, 0.05)',
+              maxWidth: '800px',
+              margin: '0 auto'
+            }}>
+              <h2 className="text-gradient" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>
+                Contáctanos
+              </h2>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '2rem',
+                textAlign: 'left'
+              }}>
+                <div>
+                  <h3 className="text-gradient" style={{ fontSize: '1.4rem', marginBottom: '0.8rem' }}>
+                    Dirección
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+                    Av. Providencia 1234, Oficina 502<br/>
+                    Santiago, Chile
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-gradient" style={{ fontSize: '1.4rem', marginBottom: '0.8rem' }}>
+                    Horario
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+                    Lunes a Viernes: 10:00 - 20:00<br/>
+                    Sábados: 10:00 - 18:00
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-gradient" style={{ fontSize: '1.4rem', marginBottom: '0.8rem' }}>
+                    Información
+                  </h3>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+                    Teléfono: +56 2 1234 5678<br/>
+                    Email: contacto@riiffmaster.cl
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
         </FadeInSection>
       </main>
       <Footer />
@@ -141,6 +192,7 @@ function App() {
         <Route path="/electric" element={<ElectricGuitarsPage />} />
         <Route path="/acoustic" element={<AcousticGuitarsPage />} />
         <Route path="/electro-acoustic" element={<ElectroAcousticGuitarsPage />} />
+        <Route path="/nosotros" element={<NosotrosPage />} />
       </Routes>
     </Router>
   );

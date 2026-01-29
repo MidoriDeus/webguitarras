@@ -16,9 +16,13 @@ const GuitarCard = ({ guitar, onAddToCart }) => {
         >
             <div className="card-image-container">
                 <img
-                    src={guitar.image || "https://placehold.co/300x400/1a1a1a/d4af37?text=Guitar"}
+                    src={guitar.image || "/src/assets/images/default-guitar.jpg"}
                     alt={guitar.name}
                     className="card-image"
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://placehold.co/300x400/1a1a1a/d4af37?text=Guitar";
+                    }}
                     style={{
                         transform: isHovered ? 'scale(1.05) rotate(2deg)' : 'scale(1) rotate(0deg)',
                         transition: 'transform 0.5s ease'
