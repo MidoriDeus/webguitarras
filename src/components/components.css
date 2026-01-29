@@ -128,7 +128,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -143,6 +143,8 @@
     overflow: hidden;
     group: normal;
     /* Just a marker for logic */
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -159,6 +161,7 @@
     justify-content: center;
     margin-bottom: 1rem;
     border-radius: var(--radius-sm);
+    position: relative;
 }
 
 .card-image {
@@ -170,6 +173,101 @@
 
 .card:hover .card-image {
     transform: scale(1.05) rotate(2deg);
+}
+
+/* Enhanced Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+.floating-guitar {
+    animation: float 6s ease-in-out infinite;
+    max-width: 600px;
+    width: 100%;
+    filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.2));
+    z-index: 2;
+    margin-top: 2rem;
+    pointer-events: none;
+}
+
+/* Enhanced Card Animations */
+.card {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+.card:nth-child(8) { animation-delay: 0.8s; }
+.card:nth-child(9) { animation-delay: 0.9s; }
+.card:nth-child(10) { animation-delay: 1.0s; }
+.card:nth-child(11) { animation-delay: 1.1s; }
+.card:nth-child(12) { animation-delay: 1.2s; }
+
+/* Category Sections */
+.category-section {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.category-section:nth-child(1) { animation-delay: 0.2s; }
+.category-section:nth-child(2) { animation-delay: 0.4s; }
+.category-section:nth-child(3) { animation-delay: 0.6s; }
+
+/* Pulse effect for category icons */
+.category-icon {
+    animation: pulse 2s infinite;
 }
 
 .card-title {
