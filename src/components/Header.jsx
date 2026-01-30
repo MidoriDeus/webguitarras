@@ -15,7 +15,7 @@ const Header = ({ onCartClick, cartCount }) => {
     // Close menus when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
-            const menuButton = document.querySelector('.mobile-menu-button');
+            const menuButton = document.querySelector('.mobile-menu-toggle');
             const mobileMenu = document.querySelector('.mobile-menu');
             const guitarDropdown = document.querySelector('.dropdown');
             const guitarButton = document.querySelector('.dropdown-toggle');
@@ -46,82 +46,101 @@ const Header = ({ onCartClick, cartCount }) => {
     }, [isMenuOpen, isGuitarOpen]);
 
     return (
-        <header className="header">
-            <div className="logo">
-                <Link to="/" className="logo-link" onClick={() => { setIsMenuOpen(false); setIsGuitarOpen(false); }}>
-                    <h2 className="text-gradient">RiffMaster</h2>
-                </Link>
-            </div>
-
-            <nav className="nav-links">
-                <Link to="/" className="nav-link" onClick={() => { setIsMenuOpen(false); setIsGuitarOpen(false); }}>Inicio</Link>
-
-                {/* Desktop dropdown menu */}
-                <div className={`dropdown ${isGuitarOpen ? 'active' : ''}`}>
-                    <button
-                        className="nav-link dropdown-toggle"
-                        onClick={() => setIsGuitarOpen(prev => !prev)}
-                        aria-expanded={isGuitarOpen}
-                        aria-haspopup="true"
-                    >
-                        Guitarras
-                    </button>
-
-                    {isGuitarOpen && (
-                        <div className="dropdown-menu" role="menu">
-                            <Link to="/electric" className="dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}} role="menuitem">
-                                Eléctricas
-                            </Link>
-                            <Link to="/acoustic" className="dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}} role="menuitem">
-                                Acústicas
-                            </Link>
-                            <Link to="/electro-acoustic" className="dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}} role="menuitem">
-                                Electroacústicas
-                            </Link>
-                        </div>
-                    )}
+        <header className="navbar">
+            <div className="navbar-container">
+                <div className="navbar-logo">
+                    <Link to="/" className="logo-link" onClick={() => { setIsMenuOpen(false); setIsGuitarOpen(false); }}>
+                        <h2 className="text-gradient">RiffMaster</h2>
+                    </Link>
                 </div>
 
-                <Link to="/nosotros" className="nav-link" onClick={() => { setIsMenuOpen(false); setIsGuitarOpen(false); }}>Nosotros</Link>
-            </nav>
+                <nav className="navbar-links">
+                    <Link to="/" className="nav-link" onClick={() => { setIsMenuOpen(false); setIsGuitarOpen(false); }}>
+                        <span className="nav-link-text">Inicio</span>
+                    </Link>
 
-            {/* Mobile menu toggle button */}
-            <button
-                className="mobile-menu-toggle"
-                onClick={toggleMenu}
-                aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
-            >
-                {isMenuOpen ? '✕' : '☰'}
-            </button>
+                    {/* Desktop dropdown menu */}
+                    <div className={`nav-dropdown ${isGuitarOpen ? 'active' : ''}`}>
+                        <button
+                            className="nav-link dropdown-toggle"
+                            onClick={() => setIsGuitarOpen(prev => !prev)}
+                            aria-expanded={isGuitarOpen}
+                            aria-haspopup="true"
+                        >
+                            <span className="nav-link-text">Guitarras</span>
+                        </button>
+
+                        {isGuitarOpen && (
+                            <div className="dropdown-menu" role="menu">
+                                <Link to="/electric" className="dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}} role="menuitem">
+                                    <span className="dropdown-item-text">Eléctricas</span>
+                                </Link>
+                                <Link to="/acoustic" className="dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}} role="menuitem">
+                                    <span className="dropdown-item-text">Acústicas</span>
+                                </Link>
+                                <Link to="/electro-acoustic" className="dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}} role="menuitem">
+                                    <span className="dropdown-item-text">Electroacústicas</span>
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+
+                    <Link to="/nosotros" className="nav-link" onClick={() => { setIsMenuOpen(false); setIsGuitarOpen(false); }}>
+                        <span className="nav-link-text">Nosotros</span>
+                    </Link>
+                </nav>
+
+                {/* Mobile menu toggle button */}
+                <button
+                    className="mobile-menu-toggle"
+                    onClick={toggleMenu}
+                    aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+                >
+                    {isMenuOpen ? '✕' : '☰'}
+                </button>
+
+                {/* Cart icon */}
+                <div className="cart-wrapper">
+                    <button className="cart-icon" onClick={onCartClick} aria-label="Carrito de compras">
+                        <span className="cart-icon-text">🛒</span>
+                        {cartCount > 0 && <div className="cart-badge">{cartCount}</div>}
+                    </button>
+                </div>
+            </div>
 
             {/* Mobile menu */}
             {isMenuOpen && (
                 <div className="mobile-menu">
-                    <Link to="/" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>Inicio</Link>
+                    <Link to="/" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                        <span className="nav-link-text">Inicio</span>
+                    </Link>
 
                     <div className="mobile-dropdown">
                         <div className="mobile-dropdown-header" onClick={() => setIsGuitarOpen(prev => !prev)}>
-                            <span>Guitarras</span>
+                            <span className="mobile-dropdown-text">Guitarras</span>
                             <span className="dropdown-arrow">{isGuitarOpen ? '▲' : '▼'}</span>
                         </div>
 
                         {isGuitarOpen && (
                             <div className="mobile-submenu expanded">
-                                <Link to="/electric" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>Eléctricas</Link>
-                                <Link to="/acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>Acústicas</Link>
-                                <Link to="/electro-acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>Electroacústicas</Link>
+                                <Link to="/electric" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                                    <span className="dropdown-item-text">Eléctricas</span>
+                                </Link>
+                                <Link to="/acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                                    <span className="dropdown-item-text">Acústicas</span>
+                                </Link>
+                                <Link to="/electro-acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                                    <span className="dropdown-item-text">Electroacústicas</span>
+                                </Link>
                             </div>
                         )}
                     </div>
 
-                    <Link to="/nosotros" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>Nosotros</Link>
+                    <Link to="/nosotros" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                        <span className="nav-link-text">Nosotros</span>
+                    </Link>
                 </div>
             )}
-
-            <div className="cart-icon" onClick={onCartClick}>
-                <span style={{ fontSize: '1.5rem' }}>🛒</span>
-                {cartCount > 0 && <div className="cart-badge">{cartCount}</div>}
-            </div>
         </header>
     );
 };
