@@ -17,7 +17,7 @@ const Header = ({ onCartClick, cartCount }) => {
         const handleClickOutside = (event) => {
             const menuButton = document.querySelector('.mobile-menu-toggle');
             const mobileMenu = document.querySelector('.mobile-menu');
-            const guitarDropdown = document.querySelector('.dropdown');
+            const guitarDropdown = document.querySelector('.nav-dropdown');
             const guitarButton = document.querySelector('.dropdown-toggle');
 
             // Check if click is outside mobile menu

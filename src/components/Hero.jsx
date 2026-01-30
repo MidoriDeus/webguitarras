@@ -3,6 +3,16 @@ import React from 'react';
 const Hero = () => {
     return (
         <section className="hero" id="home">
+            {/* Background image with overlay */}
+            <div className="hero-background">
+                <img
+                    src="/src/assets/images/guitarra electrica cafe.png"
+                    alt="Guitarra elegante en el fondo"
+                    className="hero-bg-image"
+                />
+                <div className="hero-overlay"></div>
+            </div>
+
             <div className="hero-content">
                 <h1 className="hero-title">
                     Eleva tu <br />
@@ -14,6 +24,15 @@ const Hero = () => {
                 <button className="btn-primary" onClick={() => document.getElementById('guitars').scrollIntoView({ behavior: 'smooth' })}>
                     Ver Colección
                 </button>
+            </div>
+
+            {/* Floating guitar element */}
+            <div className="floating-guitar-element">
+                <img
+                    src="/src/assets/images/guitarra electroacustica clara.png"
+                    alt="Guitarra flotante"
+                    className="floating-guitar"
+                />
             </div>
         </section>
     );
