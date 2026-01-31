@@ -9,33 +9,24 @@ const ProductGrid = ({ guitars, onAddToCart }) => {
 
     return (
         <section id="guitars" className="container">
-            <h2 className="text-gradient" style={{ fontSize: '2.5rem', textAlign: 'center', marginBottom: '1rem', marginTop: '4rem' }}>
+            <h2 className="text-gradient section-title">
                 Colección de Guitarras
             </h2>
-            <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem' }}>
+            <p className="section-subtitle">
                 Explora nuestra selección cuidadosamente curada de guitarras premium.
             </p>
 
             {/* Electric Guitars Section */}
-            <section className="category-section" style={{ padding: '2rem 1rem' }}>
-                <div className="category-header" style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
-                    <div className="category-icon" style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginRight: '1rem'
-                    }}>
-                        <span style={{ color: 'var(--accent-primary)', fontSize: '1.2rem' }}>⚡</span>
+            <section className="category-section">
+                <div className="category-header">
+                    <div className="category-icon">
+                        <span>⚡</span>
                     </div>
-                    <h3 className="text-gradient" style={{ fontSize: '2rem', margin: 0 }}>
+                    <h3 className="text-gradient category-title">
                         Guitarras Eléctricas
                     </h3>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '800px' }}>
+                <p className="category-description">
                     Instrumentos legendarios con sonido distintivo, perfectos para rock, blues, jazz y metal.
                 </p>
                 <div className="grid-container">
@@ -46,25 +37,16 @@ const ProductGrid = ({ guitars, onAddToCart }) => {
             </section>
 
             {/* Acoustic Guitars Section */}
-            <section className="category-section" style={{ padding: '2rem 1rem', marginTop: '3rem' }}>
-                <div className="category-header" style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
-                    <div className="category-icon" style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginRight: '1rem'
-                    }}>
-                        <span style={{ color: 'var(--accent-primary)', fontSize: '1.2rem' }}>🎵</span>
+            <section className="category-section">
+                <div className="category-header">
+                    <div className="category-icon">
+                        <span>🎵</span>
                     </div>
-                    <h3 className="text-gradient" style={{ fontSize: '2rem', margin: 0 }}>
+                    <h3 className="text-gradient category-title">
                         Guitarras Acústicas
                     </h3>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '800px' }}>
+                <p className="category-description">
                     Sonido natural y cálido, ideales para compositores, cantautores y sesiones íntimas.
                 </p>
                 <div className="grid-container">
@@ -75,25 +57,16 @@ const ProductGrid = ({ guitars, onAddToCart }) => {
             </section>
 
             {/* Electro-Acoustic Guitars Section */}
-            <section className="category-section" style={{ padding: '2rem 1rem', marginTop: '3rem' }}>
-                <div className="category-header" style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
-                    <div className="category-icon" style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginRight: '1rem'
-                    }}>
-                        <span style={{ color: 'var(--accent-primary)', fontSize: '1.2rem' }}>🎸</span>
+            <section className="category-section">
+                <div className="category-header">
+                    <div className="category-icon">
+                        <span>🎸</span>
                     </div>
-                    <h3 className="text-gradient" style={{ fontSize: '2rem', margin: 0 }}>
+                    <h3 className="text-gradient category-title">
                         Guitarras Electroacústicas
                     </h3>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '800px' }}>
+                <p className="category-description">
                     Combina lo mejor de ambos mundos: sonido acústico natural con capacidad de amplificación.
                 </p>
                 <div className="grid-container">

@@ -109,38 +109,34 @@ const Header = ({ onCartClick, cartCount }) => {
             </div>
 
             {/* Mobile menu */}
-            {isMenuOpen && (
-                <div className="mobile-menu">
-                    <Link to="/" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
-                        <span className="nav-link-text">Inicio</span>
-                    </Link>
+            <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+                <Link to="/" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                    <span className="nav-link-text">Inicio</span>
+                </Link>
 
-                    <div className="mobile-dropdown">
-                        <div className="mobile-dropdown-header" onClick={() => setIsGuitarOpen(prev => !prev)}>
-                            <span className="mobile-dropdown-text">Guitarras</span>
-                            <span className="dropdown-arrow">{isGuitarOpen ? '▲' : '▼'}</span>
-                        </div>
-
-                        {isGuitarOpen && (
-                            <div className="mobile-submenu expanded">
-                                <Link to="/electric" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
-                                    <span className="dropdown-item-text">Eléctricas</span>
-                                </Link>
-                                <Link to="/acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
-                                    <span className="dropdown-item-text">Acústicas</span>
-                                </Link>
-                                <Link to="/electro-acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
-                                    <span className="dropdown-item-text">Electroacústicas</span>
-                                </Link>
-                            </div>
-                        )}
+                <div className="mobile-dropdown">
+                    <div className="mobile-dropdown-header" onClick={() => setIsGuitarOpen(prev => !prev)}>
+                        <span className="mobile-dropdown-text">Guitarras</span>
+                        <span className="dropdown-arrow">{isGuitarOpen ? '▲' : '▼'}</span>
                     </div>
 
-                    <Link to="/nosotros" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
-                        <span className="nav-link-text">Nosotros</span>
-                    </Link>
+                    <div className={`mobile-submenu ${isGuitarOpen ? 'expanded' : ''}`}>
+                        <Link to="/electric" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                            <span className="dropdown-item-text">Eléctricas</span>
+                        </Link>
+                        <Link to="/acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                            <span className="dropdown-item-text">Acústicas</span>
+                        </Link>
+                        <Link to="/electro-acoustic" className="dropdown-item mobile-dropdown-item" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                            <span className="dropdown-item-text">Electroacústicas</span>
+                        </Link>
+                    </div>
                 </div>
-            )}
+
+                <Link to="/nosotros" className="nav-link mobile-nav-link" onClick={() => {setIsMenuOpen(false); setIsGuitarOpen(false);}}>
+                    <span className="nav-link-text">Nosotros</span>
+                </Link>
+            </div>
         </header>
     );
 };

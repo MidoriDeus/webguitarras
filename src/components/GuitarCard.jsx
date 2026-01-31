@@ -5,14 +5,9 @@ const GuitarCard = ({ guitar, onAddToCart }) => {
 
     return (
         <div
-            className="card"
+            className={`card ${isHovered ? 'card-hovered' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            style={{
-                transform: isHovered ? 'translateY(-10px)' : 'translateY(0)',
-                boxShadow: isHovered ? '0 15px 35px -10px rgba(0, 0, 0, 0.7)' : '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-            }}
         >
             <div className="card-image-container">
                 <img
@@ -23,25 +18,9 @@ const GuitarCard = ({ guitar, onAddToCart }) => {
                         e.target.onerror = null;
                         e.target.src = "https://placehold.co/300x400/1a1a1a/d4af37?text=Guitar";
                     }}
-                    style={{
-                        transform: isHovered ? 'scale(1.05) rotate(2deg)' : 'scale(1) rotate(0deg)',
-                        transition: 'transform 0.5s ease'
-                    }}
                 />
                 {/* Category badge */}
-                <div className="category-badge" style={{
-                    position: 'absolute',
-                    top: '10px',
-                    right: '10px',
-                    backgroundColor: 'var(--accent-primary)',
-                    color: '#000',
-                    padding: '4px 8px',
-                    borderRadius: '4px',
-                    fontSize: '0.7rem',
-                    fontWeight: 'bold',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px'
-                }}>
+                <div className="category-badge">
                     {guitar.category === 'electric' ? 'Eléctrica' :
                      guitar.category === 'acoustic' ? 'Acústica' : 'Electroacústica'}
                 </div>
@@ -50,18 +29,11 @@ const GuitarCard = ({ guitar, onAddToCart }) => {
             <span className="card-price">${guitar.price.toLocaleString('es-CL')} CLP</span>
 
             {/* Brand Description */}
-            <div className="brand-description" style={{
-                fontSize: '0.8rem',
-                color: 'var(--text-secondary)',
-                marginTop: '0.8rem',
-                marginBottom: '1rem',
-                minHeight: '60px',
-                lineHeight: '1.4'
-            }}>
+            <div className="brand-description">
                 {guitar.brandDescription}
             </div>
 
-            <button className="btn-primary" onClick={() => onAddToCart(guitar)} style={{ width: '100%', fontSize: '0.9rem', padding: '0.5rem' }}>
+            <button className="btn-primary" onClick={() => onAddToCart(guitar)}>
                 Añadir al Carrito
             </button>
         </div>
