@@ -16,7 +16,7 @@ const GuitarCard = ({ guitar, onAddToCart }) => {
         >
             <div className="card-image-container">
                 <img
-                    src={guitar.image || "/src/assets/images/default-guitar.jpg"}
+                    src={guitar.image || "/images/default-guitar.jpg"}
                     alt={guitar.name}
                     className="card-image"
                     onError={(e) => {

@@ -6,7 +6,7 @@ const Hero = () => {
             {/* Background image with overlay */}
             <div className="hero-background">
                 <img
-                    src="/src/assets/images/guitarra electrica cafe.png"
+                    src="/images/guitarra electrica cafe.png"
                     alt="Guitarra elegante en el fondo"
                     className="hero-bg-image"
                 />
@@ -29,7 +29,7 @@ const Hero = () => {
             {/* Floating guitar element */}
             <div className="floating-guitar-element">
                 <img
-                    src="/src/assets/images/guitarra electroacustica clara.png"
+                    src="/images/guitarra electroacustica clara.png"
                     alt="Guitarra flotante"
                     className="floating-guitar"
                 />
